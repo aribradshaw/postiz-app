@@ -1,3 +1,5 @@
+# Nixpacks setup for Postiz monorepo. Per-service build/start are usually set in the Railway UI
+# (see .env.example “Railway / production database” for DATABASE_URL and example commands).
 [phases.setup]
-    nixPkgs = ['nodejs', 'python3']
-    aptPkgs = ['build-essential', 'libudev-dev']
+nixPkgs = ['nodejs', 'python3']
+aptPkgs = ['build-essential', 'libudev-dev']

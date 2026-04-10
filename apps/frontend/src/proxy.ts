@@ -94,8 +94,8 @@ export async function proxy(request: NextRequest) {
       ? ''
       : (url.indexOf('?') > -1 ? '&' : '?') +
         `provider=${(findIndex === 'settings'
-          ? process.env.POSTIZ_GENERIC_OAUTH
-            ? 'generic'
+          ? process.env.IS_GENERAL
+            ? 'google'
             : 'github'
           : findIndex
         ).toUpperCase()}`;

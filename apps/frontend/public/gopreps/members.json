@@ -1,0 +1,268 @@
+{
+  "members": [
+    {
+      "id": "biasiucci-30",
+      "name": "Leo Biasiucci",
+      "district": "LD30",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 1
+    },
+    {
+      "id": "blackman-7",
+      "name": "Walt Blackman",
+      "district": "LD7",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 4
+    },
+    {
+      "id": "bliss-1",
+      "name": "Selina Bliss",
+      "district": "LD1",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "carbone-25",
+      "name": "Michael Carbone",
+      "district": "LD25",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "carter-neal-15",
+      "name": "Neal Carter",
+      "district": "LD15",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "carter-pamela-4",
+      "name": "Pamela Carter",
+      "district": "LD4",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "diaz-19",
+      "name": "Lupe Diaz",
+      "district": "LD19",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "fink-27",
+      "name": "Lisa Fink",
+      "district": "LD27",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 8
+    },
+    {
+      "id": "gillette-30",
+      "name": "John Gillette",
+      "district": "LD30",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "gress-4",
+      "name": "Matt Gress",
+      "district": "LD4",
+      "imageUrl": null,
+      "clips": 3,
+      "recordings": 3
+    },
+    {
+      "id": "griffin-19",
+      "name": "Gail Griffin",
+      "district": "LD19",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "heap-10",
+      "name": "Ralph Heap",
+      "district": "LD10",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "hendrix-14",
+      "name": "Laurin Hendrix",
+      "district": "LD14",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "keshel-17",
+      "name": "Rachel Keshel",
+      "district": "LD17",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "kolodin-3",
+      "name": "Alexander Kolodin",
+      "district": "LD3",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "kupper-25",
+      "name": "Nick Kupper",
+      "district": "LD25",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "livingston-28",
+      "name": "David Livingston",
+      "district": "LD28",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "lopez-16",
+      "name": "Chris Lopez",
+      "district": "LD16",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "marshall-7",
+      "name": "David Marshall, Sr.",
+      "district": "LD7",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "martinez-16",
+      "name": "Teresa Martinez",
+      "district": "LD16",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "montenegro-29",
+      "name": "Steve Montenegro",
+      "district": "LD29",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "nguyen-1",
+      "name": "Quang H. Nguyen",
+      "district": "LD1",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "olson-10",
+      "name": "Justin Olson",
+      "district": "LD10",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "pena-23",
+      "name": "Michele Peña",
+      "district": "LD23",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "pingerelli-28",
+      "name": "Beverly Pingerelli",
+      "district": "LD28",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "powell-14",
+      "name": "Khyl Powell",
+      "district": "LD14",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "reim-3",
+      "name": "Cody Reim",
+      "district": "LD3",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "rivero-27",
+      "name": "Tony Rivero",
+      "district": "LD27",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "taylor-29",
+      "name": "James Taylor",
+      "district": "LD29",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "way-15",
+      "name": "Michael Way",
+      "district": "LD15",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "weninger-13",
+      "name": "Jeff Weninger",
+      "district": "LD13",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    },
+    {
+      "id": "willoughby-13",
+      "name": "Julie Willoughby",
+      "district": "LD13",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 2
+    },
+    {
+      "id": "wilmeth-2",
+      "name": "Justin Wilmeth",
+      "district": "LD2",
+      "imageUrl": null,
+      "clips": 0,
+      "recordings": 0
+    }
+  ]
+}

@@ -5,6 +5,17 @@ import { AuthService } from '@gitroom/helpers/auth/auth.service';
 import { CreateOrgUserDto } from '@gitroom/nestjs-libraries/dtos/auth/create.org.user.dto';
 import { makeId } from '@gitroom/nestjs-libraries/services/make.is';
 
+function organizationDisplayName(body: {
+  company?: string;
+  email: string;
+}): string {
+  const trimmed = body.company?.trim();
+  if (trimmed) return trimmed.slice(0, 128);
+  const local = body.email?.split('@')[0]?.trim() ?? '';
+  if (local) return local.slice(0, 128);
+  return 'Workspace';
+}
+
 @Injectable()
 export class OrganizationRepository {
   constructor(
@@ -265,7 +276,7 @@ export class OrganizationRepository {
   ) {
     return this._organization.model.organization.create({
       data: {
-        name: body.company,
+        name: organizationDisplayName(body),
         apiKey: AuthService.fixedEncryption(makeId(20)),
         allowTrial: true,
         isTrailing: true,

@@ -5,9 +5,6 @@ interface VariableContextInterface {
   stripeClient: string;
   billingEnabled: boolean;
   isGeneral: boolean;
-  genericOauth: boolean;
-  oauthLogoUrl: string;
-  oauthDisplayName: string;
   mcpUrl?: string;
   cloudflareUrl: string;
   mainUrl: string;
@@ -34,9 +31,6 @@ const VariableContext = createContext({
   stripeClient: '',
   billingEnabled: false,
   isGeneral: true,
-  genericOauth: false,
-  oauthLogoUrl: '',
-  oauthDisplayName: '',
   mcpUrl: '',
   cloudflareUrl: '',
   mainUrl: '',

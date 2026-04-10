@@ -16,7 +16,8 @@ services:
     volumes:
       - postgres-volume:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      # Use 5435 when host 5432 is already taken (e.g. another local Postgres).
+      - 5435:5432
     networks:
       - postiz-network
   postiz-redis:
@@ -25,7 +26,8 @@ services:
     container_name: postiz-redis
     restart: always
     ports:
-      - 6379:6379
+      # Use 6381 when host 6379 is already taken by another Redis.
+      - 6381:6379
     networks:
       - postiz-network
   postiz-pg-admin:

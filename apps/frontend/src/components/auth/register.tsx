@@ -8,32 +8,17 @@ import { Input } from '@gitroom/react/form/input';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { CreateOrgUserDto } from '@gitroom/nestjs-libraries/dtos/auth/create.org.user.dto';
-import { GithubProvider } from '@gitroom/frontend/components/auth/providers/github.provider';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { LoadingComponent } from '@gitroom/frontend/components/layout/loading';
 import clsx from 'clsx';
-import { GoogleProvider } from '@gitroom/frontend/components/auth/providers/google.provider';
-import { OauthProvider } from '@gitroom/frontend/components/auth/providers/oauth.provider';
 import { useFireEvents } from '@gitroom/helpers/utils/use.fire.events';
-import { useVariables } from '@gitroom/react/helpers/variable.context';
 import { useTrack } from '@gitroom/react/helpers/use.track';
 import { TrackEnum } from '@gitroom/nestjs-libraries/user/track.enum';
-import { FarcasterProvider } from '@gitroom/frontend/components/auth/providers/farcaster.provider';
-import dynamic from 'next/dynamic';
-import { WalletUiProvider } from '@gitroom/frontend/components/auth/providers/placeholder/wallet.ui.provider';
 import { useT } from '@gitroom/react/translation/get.transation.service.client';
 import useCookie from 'react-use-cookie';
-const WalletProvider = dynamic(
-  () => import('@gitroom/frontend/components/auth/providers/wallet.provider'),
-  {
-    ssr: false,
-    loading: () => <WalletUiProvider />,
-  }
-);
 type Inputs = {
   email: string;
   password: string;
-  company: string;
   providerToken: string;
   provider: string;
 };
@@ -89,8 +74,6 @@ export function RegisterAfter({
   provider: string;
 }) {
   const t = useT();
-  const { isGeneral, genericOauth, neynarClientId, billingEnabled } =
-    useVariables();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const fireEvents = useFireEvents();
@@ -147,43 +130,23 @@ export function RegisterAfter({
   };
   return (
     <FormProvider {...form}>
-      <form className="flex-1 flex" onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col flex-1">
-          <div>
-            <h1 className="text-[40px] font-[500] -tracking-[0.8px] text-start cursor-pointer">
+      <form
+        className="flex-1 flex w-full justify-center"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
+        <div className="flex flex-col flex-1 w-full max-w-[440px] items-center text-center">
+          <div className="w-full">
+            <h1 className="text-[40px] font-[500] -tracking-[0.8px] text-center cursor-pointer">
               {t('sign_up', 'Sign Up')}
             </h1>
           </div>
-          <div className="text-[14px] mt-[32px] mb-[12px]">
-            {t('continue_with', 'Continue With')}
-          </div>
-          <div className="flex flex-col">
-            {!isAfterProvider &&
-              (!isGeneral ? (
-                <GithubProvider />
-              ) : (
-                <div className="gap-[8px] flex">
-                  {genericOauth && isGeneral ? (
-                    <OauthProvider />
-                  ) : (
-                    <GoogleProvider />
-                  )}
-                  {!!neynarClientId && <FarcasterProvider />}
-                  {billingEnabled && <WalletProvider />}
-                </div>
-              ))}
-            {!isAfterProvider && (
-              <div className="h-[20px] mb-[24px] mt-[24px] relative">
-                <div className="absolute w-full h-[1px] bg-fifth top-[50%] -translate-y-[50%]" />
-                <div
-                  className={`absolute z-[1] justify-center items-center w-full start-0 -top-[4px] flex`}
-                >
-                  <div className="px-[16px]">{t('or', 'or')}</div>
-                </div>
-              </div>
-            )}
-            <div className="flex flex-col gap-[12px]">
-              <div className="text-textColor">
+          {isAfterProvider && (
+            <div className="mt-[24px] w-full text-center text-[14px] text-textColor">
+              {t('finish_sign_up', 'Finish creating your account')}
+            </div>
+          )}
+          <div className={clsx('flex flex-col gap-[12px] w-full', !isAfterProvider && 'mt-[32px]')}>
+              <div className="text-textColor w-full text-start">
                 {!isAfterProvider && (
                   <>
                     <Input
@@ -203,16 +166,8 @@ export function RegisterAfter({
                     />
                   </>
                 )}
-                <Input
-                  label="Company"
-                  translationKey="label_company"
-                  {...form.register('company')}
-                  autoComplete="off"
-                  type="text"
-                  placeholder={t('label_company', 'Company')}
-                />
               </div>
-              <div className={clsx('text-[12px]')}>
+              <div className={clsx('text-[12px] text-center')}>
                 {t(
                   'by_registering_you_agree_to_our',
                   'By registering you agree to our'
@@ -240,7 +195,7 @@ export function RegisterAfter({
                 <div className="w-full flex">
                   <Button
                     type="submit"
-                    className="flex-1 rounded-[10px] !h-[52px]"
+                    className="flex-1 rounded-[10px] !h-[52px] !bg-azHouse-teal hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azHouse-gold"
                     loading={loading}
                   >
                     {t('create_account', 'Create Account')}
@@ -258,7 +213,6 @@ export function RegisterAfter({
                 </p>
               </div>
             </div>
-          </div>
         </div>
       </form>
     </FormProvider>

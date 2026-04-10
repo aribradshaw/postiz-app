@@ -5,6 +5,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        azHouse: {
+          navy: 'var(--az-house-navy)',
+          red: 'var(--az-house-red)',
+          blue: 'var(--az-house-blue)',
+          teal: 'var(--az-house-teal)',
+          gold: 'var(--az-house-gold)',
+          surface: 'var(--az-house-surface)',
+        },
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
         textColor: 'var(--new-btn-text)',
