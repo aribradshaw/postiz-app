@@ -1,6 +1,7 @@
 import { Global, Injectable, Module, OnModuleInit } from '@nestjs/common';
 import { TemporalService } from 'nestjs-temporal-core';
 import { Connection } from '@temporalio/client';
+import { isTemporalEnabled } from './temporal.module';
 
 @Injectable()
 export class TemporalRegister implements OnModuleInit {
@@ -40,7 +41,7 @@ export class TemporalRegister implements OnModuleInit {
 @Module({
   imports: [],
   controllers: [],
-  providers: [TemporalRegister],
+  providers: isTemporalEnabled() ? [TemporalRegister] : [],
   get exports() {
     return this.providers;
   },

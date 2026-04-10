@@ -1,5 +1,6 @@
 import { Global, Injectable, Module, OnModuleInit } from '@nestjs/common';
 import { TemporalService } from 'nestjs-temporal-core';
+import { isTemporalEnabled } from './temporal.module';
 
 @Injectable()
 export class InfiniteWorkflowRegister implements OnModuleInit {
@@ -23,7 +24,7 @@ export class InfiniteWorkflowRegister implements OnModuleInit {
 @Module({
   imports: [],
   controllers: [],
-  providers: [InfiniteWorkflowRegister],
+  providers: isTemporalEnabled() ? [InfiniteWorkflowRegister] : [],
   get exports() {
     return this.providers;
   },
