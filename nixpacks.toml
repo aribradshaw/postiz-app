@@ -1,0 +1,16 @@
+# Railway / Nixpacks — backend image from monorepo root.
+# Frontend-only service: set Start Command in Railway to `pnpm run start:prod:frontend`
+# and Build Command to include `pnpm run build:frontend` (or full `pnpm run build`).
+
+[phases.install]
+cmds = [
+  'corepack enable',
+  'corepack prepare pnpm@10.6.1 --activate',
+  'pnpm install',
+]
+
+[phases.build]
+cmds = ['pnpm run prisma-generate', 'pnpm run build:backend']
+
+[start]
+cmd = 'pnpm run start:prod:backend'
