@@ -3,6 +3,18 @@ import { mkdirSync, unlink, writeFileSync } from 'fs';
 // @ts-ignore
 import mime from 'mime';
 import { extname } from 'path';
+
+/** Public origin for /uploads URLs (browser). Railway/API-only: set to your backend URL. */
+function localUploadsPublicOrigin(): string {
+  const raw = (
+    process.env.LOCAL_UPLOAD_PUBLIC_URL ||
+    process.env.NEXT_PUBLIC_BACKEND_URL ||
+    process.env.FRONTEND_URL ||
+    ''
+  ).trim();
+  return raw.replace(/\/$/, '');
+}
+
 export class LocalStorage implements IUploadProvider {
   constructor(private uploadDirectory: string) {}
 
@@ -34,7 +46,8 @@ export class LocalStorage implements IUploadProvider {
     // Logic to save the file to the filesystem goes here
     writeFileSync(filePath, Buffer.from(await loadImage.arrayBuffer()));
 
-    return process.env.FRONTEND_URL + '/uploads' + publicPath;
+    const origin = localUploadsPublicOrigin();
+    return `${origin}/uploads${publicPath}`;
   }
 
   async uploadFile(file: Express.Multer.File): Promise<any> {
@@ -61,9 +74,10 @@ export class LocalStorage implements IUploadProvider {
       // Logic to save the file to the filesystem goes here
       writeFileSync(filePath, file.buffer);
 
+      const origin = localUploadsPublicOrigin();
       return {
         filename: `${randomName}${extname(file.originalname)}`,
-        path: process.env.FRONTEND_URL + '/uploads' + publicPath,
+        path: `${origin}/uploads${publicPath}`,
         mimetype: file.mimetype,
         originalname: file.originalname,
       };

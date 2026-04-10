@@ -4,7 +4,8 @@ initializeSentry('backend', true);
 import compression from 'compression';
 
 import { loadSwagger } from '@gitroom/helpers/swagger/load.swagger';
-import { json } from 'express';
+import express, { json } from 'express';
+import { mkdirSync } from 'fs';
 import { Runtime } from '@temporalio/worker';
 Runtime.install({ shutdownSignals: [] });
 
@@ -12,7 +13,7 @@ process.env.TZ = 'UTC';
 
 import cookieParser from 'cookie-parser';
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { INestApplication, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 import { SubscriptionExceptionFilter } from '@gitroom/backend/services/auth/permissions/subscription.exception';
@@ -47,6 +48,8 @@ async function start() {
 
   await startMcp(app);
 
+  mountLocalUploadStatic(app);
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -76,6 +79,31 @@ async function start() {
   } catch (e) {
     Logger.error(`Backend failed to start on port ${port}`, e);
   }
+}
+
+/** Local disk uploads (no Cloudflare): serve files written under UPLOAD_DIRECTORY at GET /uploads/* */
+function mountLocalUploadStatic(app: INestApplication) {
+  if ((process.env.STORAGE_PROVIDER || 'local') === 'cloudflare') {
+    return;
+  }
+  const dir = process.env.UPLOAD_DIRECTORY?.trim();
+  if (!dir) {
+    Logger.warn(
+      'STORAGE_PROVIDER is local but UPLOAD_DIRECTORY is unset — file uploads will fail'
+    );
+    return;
+  }
+  try {
+    mkdirSync(dir, { recursive: true });
+  } catch {
+    /* ignore */
+  }
+  const http = app.getHttpAdapter().getInstance();
+  http.use(
+    '/uploads',
+    express.static(dir, { index: false, fallthrough: false })
+  );
+  Logger.log(`Local uploads: GET /uploads/* → ${dir}`);
 }
 
 function checkConfiguration() {
