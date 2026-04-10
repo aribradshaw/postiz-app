@@ -1,3 +1,4 @@
+import './bootstrap-railway-env';
 import { initializeSentry } from '@gitroom/nestjs-libraries/sentry/initialize.sentry';
 initializeSentry('backend', true);
 import compression from 'compression';
