@@ -12,8 +12,8 @@ Runtime.install({ shutdownSignals: [] });
 process.env.TZ = 'UTC';
 
 import cookieParser from 'cookie-parser';
-import { Logger, ValidationPipe } from '@nestjs/common';
-import { INestApplication, NestFactory } from '@nestjs/core';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 import { SubscriptionExceptionFilter } from '@gitroom/backend/services/auth/permissions/subscription.exception';
