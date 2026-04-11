@@ -99,8 +99,9 @@ export async function proxy(request: NextRequest) {
             : 'github'
           : findIndex
         ).toUpperCase()}`;
+    const authBase = findIndex ? '/auth' : '/auth/login';
     return NextResponse.redirect(
-      new URL(`/auth${url}${additional}`, nextUrl.href)
+      new URL(`${authBase}${url}${additional}`, nextUrl.href)
     );
   }
 
