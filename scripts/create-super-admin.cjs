@@ -13,6 +13,7 @@ const { hashSync } = require('bcrypt');
 const { PrismaClient } = require('@prisma/client');
 
 const EVP_BytesToKey = require('evp_bytestokey');
+const { resolveDatabaseUrl } = require('./resolve-database-url.cjs');
 
 const root = path.join(__dirname, '..');
 const envPath = path.join(root, '.env');
@@ -24,19 +25,6 @@ function loadEnvFile() {
   for (const [k, v] of Object.entries(parsed)) {
     if (process.env[k] === undefined) process.env[k] = v;
   }
-}
-
-function withSslModeRequired(connectionUrl) {
-  const trimmed = (connectionUrl || '').trim();
-  if (!trimmed || /[?&]sslmode=/i.test(trimmed)) return trimmed;
-  return `${trimmed}${trimmed.includes('?') ? '&' : '?'}sslmode=require`;
-}
-
-function resolveDatabaseUrl() {
-  let db = (process.env.DATABASE_URL || '').trim();
-  const pub = (process.env.DATABASE_PUBLIC_URL || '').trim();
-  if (!db && pub) db = withSslModeRequired(pub);
-  return db;
 }
 
 function makeId(length) {
@@ -84,12 +72,14 @@ function organizationDisplayName(email) {
 
 async function main() {
   loadEnvFile();
-  const databaseUrl = resolveDatabaseUrl();
+  const databaseUrl = resolveDatabaseUrl(process.env);
   const email = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
   const password = process.env.ADMIN_PASSWORD || '';
 
   if (!databaseUrl) {
-    console.error('Missing DATABASE_URL (set it or DATABASE_PUBLIC_URL in .env).');
+    console.error(
+      'Missing database URL. Set DATABASE_URL, DATABASE_PUBLIC_URL, or RAILWAY_TCP_PROXY_DOMAIN + RAILWAY_TCP_PROXY_PORT with POSTGRES_* in .env.'
+    );
     process.exit(1);
   }
   if (!email || !password) {
