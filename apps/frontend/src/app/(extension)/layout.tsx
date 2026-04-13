@@ -19,7 +19,12 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   return (
     <html suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          href="/favicon.png"
+          type="image/png"
+          sizes="any"
+        />
       </head>
       <body
         className={clsx(jakartaSans.className, 'dark text-primary !bg-primary')}
